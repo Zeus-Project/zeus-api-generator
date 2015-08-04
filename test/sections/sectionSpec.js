@@ -40,16 +40,19 @@ describe('Section', () => {
         });
       });
 
-      xit('expect have a name in the section', () => {
+      it('expect have a name in the section', () => {
         expect(section.name).to.be.eql('Name CSS Section');
       });
 
-      xit('expect have a title in the section', () => {
+      it('expect have a title in the section', () => {
         expect(section.title).to.be.eql('Title CSS Section');
       });
 
-      xit('expect have a describe in the section', () => {
+      it('expect have a describe in the section', () => {
         expect(section.description).to.be.eql('<p>Description HTML CSS Section</p>');
+      });
+
+      it('expect have a url attribute with the dirrection for the static page', () => {
       });
 
     });

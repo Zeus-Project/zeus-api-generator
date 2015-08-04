@@ -9,6 +9,18 @@ export default class HtmlParser extends Parser {
     if(html === NO_HTML){
       throw new Error('[HtmlParser#constructor] html is a required param');
     }
-    this.$html = $(html);
+    this.$ = cheerio.load(html, {decodeEntities: false});
+  }
+
+  get name() {
+    return this.$('[data-zeus=name]').text();
+  }
+
+  get title() {
+    return this.$('[data-zeus=title]').text();
+  }
+
+  get description() {
+    return this.$('[data-zeus=description]').html();
   }
 }

@@ -22,11 +22,11 @@ export default class SectionsFactory {
 
   sections() {
     return new Promise((resolve, reject) => {
-      const sections = getDirectories(this.path)
+      const sectionsBuilders = getDirectories(this.path)
                   .map(dir => `${this.path}${sep}${dir}`)
-                  .map(path => new Section({path}));
+                  .map(path => Section.build({path}));
 
-      resolve(sections);
+      Promise.all(sectionsBuilders).then(sections => resolve(sections));
     });
   }
 }

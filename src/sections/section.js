@@ -17,10 +17,27 @@ export default class Section {
     return new Promise((resolve, reject) => {
       readFilePromisify(join(path, DATA_FILE), {encoding: 'utf8'})
       .then(html => new HtmlParser({html}))
-      .then(parser => resolve(new Section(parser)));
+      .then(parser => resolve(new Section({parser})));
     });
   }
 
   constructor({parser} = {}) {
+    if(!parser) {
+      throw new Error('[Section#constructor] parser is a required param');
+    }
+
+    this.parser = parser;
+  }
+
+  get name() {
+    return this.parser.name;
+  }
+
+  get title() {
+    return this.parser.title;
+  }
+
+  get description() {
+    return this.parser.description;
   }
 }
