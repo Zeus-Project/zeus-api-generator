@@ -1,5 +1,7 @@
 import {join} from 'path';
 
+export const GITHUB_HOST_FIXTURE = 'http://testerUser.github.io/fixtures';
+
 export const BASE_PATH = join(__dirname, 'fixture');
 export const BASE_PATH_SECTIONS = BASE_PATH;
 export const PATH_STATIC_SECTION = join(BASE_PATH_SECTIONS, 'css');
