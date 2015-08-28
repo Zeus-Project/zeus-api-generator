@@ -1,0 +1,1907 @@
+[
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/index.js",
+    "memberof": null,
+    "longname": "src/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import sections from './sections';\n\nexport default {\n  SectionsFactory: sections.SectionsFactory,\n  Section: sections.Section\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/parser/htmlParser.js",
+    "memberof": null,
+    "longname": "src/parser/htmlParser.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Parser from './parser';\nimport cheerio from 'cheerio';\n\nconst NO_HTML = '';\n\nexport default class HtmlParser extends Parser {\n  constructor({$ = cheerio, html = NO_HTML} = {}){\n    super();\n    if(html === NO_HTML){\n      throw new Error('[HtmlParser#constructor] html is a required param');\n    }\n    this.$ = $.load(html, {decodeEntities: false});\n  }\n\n  get name() {\n    return this.$('[data-zeus=name]').text();\n  }\n\n  get title() {\n    return this.$('[data-zeus=title]').text();\n  }\n\n  get description() {\n    return this.$('[data-zeus=description]').html();\n  }\n}\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "NO_HTML",
+    "memberof": "src/parser/htmlParser.js",
+    "longname": "src/parser/htmlParser.js~NO_HTML",
+    "access": null,
+    "export": false,
+    "importPath": "@schibstedspain/zeus-api-generator/src/parser/htmlParser.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "HtmlParser",
+    "memberof": "src/parser/htmlParser.js",
+    "longname": "src/parser/htmlParser.js~HtmlParser",
+    "access": null,
+    "export": true,
+    "importPath": "@schibstedspain/zeus-api-generator/src/parser/htmlParser.js",
+    "importStyle": "HtmlParser",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/parser/parser~Parser"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/parser/htmlParser.js~HtmlParser",
+    "longname": "src/parser/htmlParser.js~HtmlParser#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "params": [
+      {
+        "name": "objectPattern",
+        "optional": true,
+        "types": [
+          "{\"$\": *, \"html\": *}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "$",
+    "memberof": "src/parser/htmlParser.js~HtmlParser",
+    "longname": "src/parser/htmlParser.js~HtmlParser#$",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "src/parser/htmlParser.js~HtmlParser",
+    "longname": "src/parser/htmlParser.js~HtmlParser#name",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "title",
+    "memberof": "src/parser/htmlParser.js~HtmlParser",
+    "longname": "src/parser/htmlParser.js~HtmlParser#title",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "description",
+    "memberof": "src/parser/htmlParser.js~HtmlParser",
+    "longname": "src/parser/htmlParser.js~HtmlParser#description",
+    "access": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/parser/index.js",
+    "memberof": null,
+    "longname": "src/parser/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import HtmlParser from './htmlParser';\n\nexport default {HtmlParser};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/parser/parser.js",
+    "memberof": null,
+    "longname": "src/parser/parser.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default class Parser {\n  get name() {\n    throw new Error('[Parser.name] must be implemented');\n  }\n\n  get title() {\n    throw new Error('[Parser.title] must be implemented');\n  }\n\n  get description() {\n    throw new Error('[Parser.description] must be implemented');\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Parser",
+    "memberof": "src/parser/parser.js",
+    "longname": "src/parser/parser.js~Parser",
+    "access": null,
+    "export": true,
+    "importPath": "@schibstedspain/zeus-api-generator/src/parser/parser.js",
+    "importStyle": "Parser",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "src/parser/parser.js~Parser",
+    "longname": "src/parser/parser.js~Parser#name",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "title",
+    "memberof": "src/parser/parser.js~Parser",
+    "longname": "src/parser/parser.js~Parser#title",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "description",
+    "memberof": "src/parser/parser.js~Parser",
+    "longname": "src/parser/parser.js~Parser#description",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/sections/factory.js",
+    "memberof": null,
+    "longname": "src/sections/factory.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Promise from 'bluebird';\nimport {readdirSync, statSync} from 'fs';\nimport {join, sep} from 'path';\nimport Section from './section';\n\nconst NO_PATH = '';\n\n// http://stackoverflow.com/questions/18112204/get-all-directories-within-directory-nodejs\nconst getDirectories = (srcpath) => {\n  return readdirSync(srcpath).filter(function(file) {\n    return statSync(join(srcpath, file)).isDirectory();\n  });\n};\n\nexport default class SectionsFactory {\n  constructor({path = NO_PATH} = {}) {\n    if(path === NO_PATH ) {\n      throw new Error('[SectionsFactory#constructor] path cant be a empty string');\n    }\n    this.path = path;\n  }\n\n  sections() {\n    return new Promise((resolve) => {\n      const sectionsBuilders = getDirectories(this.path)\n                  .map(dir => `${this.path}${sep}${dir}`)\n                  .map(path => Section.build({path}));\n\n      Promise.all(sectionsBuilders).then(sections => resolve(sections));\n    });\n  }\n}\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "NO_PATH",
+    "memberof": "src/sections/factory.js",
+    "longname": "src/sections/factory.js~NO_PATH",
+    "access": null,
+    "export": false,
+    "importPath": "@schibstedspain/zeus-api-generator/src/sections/factory.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getDirectories",
+    "memberof": "src/sections/factory.js",
+    "longname": "src/sections/factory.js~getDirectories",
+    "access": null,
+    "export": false,
+    "importPath": "@schibstedspain/zeus-api-generator/src/sections/factory.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "SectionsFactory",
+    "memberof": "src/sections/factory.js",
+    "longname": "src/sections/factory.js~SectionsFactory",
+    "access": null,
+    "export": true,
+    "importPath": "@schibstedspain/zeus-api-generator/src/sections/factory.js",
+    "importStyle": "SectionsFactory",
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/sections/factory.js~SectionsFactory",
+    "longname": "src/sections/factory.js~SectionsFactory#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "params": [
+      {
+        "name": "objectPattern",
+        "optional": true,
+        "types": [
+          "{\"path\": *}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "path",
+    "memberof": "src/sections/factory.js~SectionsFactory",
+    "longname": "src/sections/factory.js~SectionsFactory#path",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "sections",
+    "memberof": "src/sections/factory.js~SectionsFactory",
+    "longname": "src/sections/factory.js~SectionsFactory#sections",
+    "access": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/sections/index.js",
+    "memberof": null,
+    "longname": "src/sections/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import SectionsFactory from './factory';\nimport Section from './section';\n\nexport default {\n  Section,\n  SectionsFactory\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/sections/section.js",
+    "memberof": null,
+    "longname": "src/sections/section.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Promise from 'bluebird';\nimport {HtmlParser} from '../parser';\nimport {readFile} from 'fs';\nimport {join} from 'path';\n\nconst readFilePromisify = Promise.promisify(readFile);\n\nconst NO_PATH = '';\nconst DATA_FILE = 'index.html';\n\nexport default class Section {\n  static build({path = NO_PATH} = {}) {\n    if(path === NO_PATH ) {\n      throw new Error('[Section.build] path cant be a empty string');\n    }\n\n    return new Promise((resolve) => {\n      readFilePromisify(join(path, DATA_FILE), {encoding: 'utf8'})\n      .then(html => new HtmlParser({html}))\n      .then(parser => resolve(new Section({parser})));\n    });\n  }\n\n  constructor({parser} = {}) {\n    if(!parser) {\n      throw new Error('[Section#constructor] parser is a required param');\n    }\n\n    this.parser = parser;\n  }\n\n  get name() {\n    return this.parser.name;\n  }\n\n  get title() {\n    return this.parser.title;\n  }\n\n  get description() {\n    return this.parser.description;\n  }\n}\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "readFilePromisify",
+    "memberof": "src/sections/section.js",
+    "longname": "src/sections/section.js~readFilePromisify",
+    "access": null,
+    "export": false,
+    "importPath": "@schibstedspain/zeus-api-generator/src/sections/section.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "NO_PATH",
+    "memberof": "src/sections/section.js",
+    "longname": "src/sections/section.js~NO_PATH",
+    "access": null,
+    "export": false,
+    "importPath": "@schibstedspain/zeus-api-generator/src/sections/section.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "DATA_FILE",
+    "memberof": "src/sections/section.js",
+    "longname": "src/sections/section.js~DATA_FILE",
+    "access": null,
+    "export": false,
+    "importPath": "@schibstedspain/zeus-api-generator/src/sections/section.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Section",
+    "memberof": "src/sections/section.js",
+    "longname": "src/sections/section.js~Section",
+    "access": null,
+    "export": true,
+    "importPath": "@schibstedspain/zeus-api-generator/src/sections/section.js",
+    "importStyle": "Section",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "kind": "method",
+    "static": true,
+    "variation": null,
+    "name": "build",
+    "memberof": "src/sections/section.js~Section",
+    "longname": "src/sections/section.js~Section.build",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "params": [
+      {
+        "name": "objectPattern",
+        "optional": true,
+        "types": [
+          "{\"path\": *}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/sections/section.js~Section",
+    "longname": "src/sections/section.js~Section#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "params": [
+      {
+        "name": "objectPattern",
+        "optional": true,
+        "types": [
+          "{\"parser\": *}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "parser",
+    "memberof": "src/sections/section.js~Section",
+    "longname": "src/sections/section.js~Section#parser",
+    "access": null,
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "src/sections/section.js~Section",
+    "longname": "src/sections/section.js~Section#name",
+    "access": null,
+    "description": null,
+    "lineNumber": 32,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "title",
+    "memberof": "src/sections/section.js~Section",
+    "longname": "src/sections/section.js~Section#title",
+    "access": null,
+    "description": null,
+    "lineNumber": 36,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "description",
+    "memberof": "src/sections/section.js~Section",
+    "longname": "src/sections/section.js~Section#description",
+    "access": null,
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/url/index.js",
+    "memberof": null,
+    "longname": "src/url/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "content": "/* eslint no-underscore-dangle: 0 */\nexport const NO_BASE_PATH = '';\nexport const NO_PATH = '';\nexport const NO_HOST = '';\n\nexport class Url {\n  constructor() {\n    this._basePath = NO_BASE_PATH;\n    this._host = NO_HOST;\n  }\n\n  set basePath(path) {\n    this._basePath = path;\n  }\n\n  set host(host) {\n    this._host = host;\n  }\n\n  absolute({path = NO_PATH} = {}){\n    if(this._basePath === NO_BASE_PATH || this._host === NO_HOST) {\n      throw new Error('[Url#absolute] setup basePath and/or host');\n    }\n\n  }\n}\n\nexport default new Url();\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "NO_BASE_PATH",
+    "memberof": "src/url/index.js",
+    "longname": "src/url/index.js~NO_BASE_PATH",
+    "access": null,
+    "export": true,
+    "importPath": "@schibstedspain/zeus-api-generator/src/url/index.js",
+    "importStyle": "{NO_BASE_PATH}",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "NO_PATH",
+    "memberof": "src/url/index.js",
+    "longname": "src/url/index.js~NO_PATH",
+    "access": null,
+    "export": true,
+    "importPath": "@schibstedspain/zeus-api-generator/src/url/index.js",
+    "importStyle": "{NO_PATH}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "NO_HOST",
+    "memberof": "src/url/index.js",
+    "longname": "src/url/index.js~NO_HOST",
+    "access": null,
+    "export": true,
+    "importPath": "@schibstedspain/zeus-api-generator/src/url/index.js",
+    "importStyle": "{NO_HOST}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Url",
+    "memberof": "src/url/index.js",
+    "longname": "src/url/index.js~Url",
+    "access": null,
+    "export": true,
+    "importPath": "@schibstedspain/zeus-api-generator/src/url/index.js",
+    "importStyle": "{Url}",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/url/index.js~Url",
+    "longname": "src/url/index.js~Url#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_basePath",
+    "memberof": "src/url/index.js~Url",
+    "longname": "src/url/index.js~Url#_basePath",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_host",
+    "memberof": "src/url/index.js~Url",
+    "longname": "src/url/index.js~Url#_host",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "basePath",
+    "memberof": "src/url/index.js~Url",
+    "longname": "src/url/index.js~Url#basePath",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_basePath",
+    "memberof": "src/url/index.js~Url",
+    "longname": "src/url/index.js~Url#_basePath",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "host",
+    "memberof": "src/url/index.js~Url",
+    "longname": "src/url/index.js~Url#host",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_host",
+    "memberof": "src/url/index.js~Url",
+    "longname": "src/url/index.js~Url#_host",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "absolute",
+    "memberof": "src/url/index.js~Url",
+    "longname": "src/url/index.js~Url#absolute",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "params": [
+      {
+        "name": "objectPattern",
+        "optional": true,
+        "types": [
+          "{\"path\": *}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/parser/htmlParserSpec.js",
+    "memberof": null,
+    "longname": "test/parser/htmlParserSpec.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "content": "/* eslint no-unused-vars:0 */\nimport sinon from 'sinon';\nimport {expect} from 'chai';\n\nimport {readFileSync} from 'fs';\nimport {join} from 'path';\n\nimport HtmlParser from '../../src/parser/htmlParser';\n\nimport {PATH_STATIC_SECTION, PATH_DINAMYC_SECTION} from '../constants';\n\nconst DATA_FILE = 'index.html';\n\ndescribe('HtmlParser', () => {\n  it('Expect be an instanciable class', () => {\n    return expect(HtmlParser).to.not.be.undefined;\n  });\n\n  describe('An instance with a empty html param', () => {\n    it('expect throw an exception', () => {\n      expect(() => new HtmlParser()).to.throw('[HtmlParser#constructor] html is a required param');\n    });\n  });\n\n  describe('An instance with a valid HTML string', () => {\n    let htmlParser;\n\n    beforeEach(() => {\n      htmlParser = new HtmlParser({html: readFileSync(join(PATH_STATIC_SECTION, DATA_FILE))});\n    });\n    afterEach(() => {\n      htmlParser = null;\n    });\n\n    it('expect be possible query for the name attribute', () => {\n      expect(htmlParser.name).to.be.eql('Name CSS Section');\n    });\n\n    it('expect be possible query for the title attribute', () => {\n      expect(htmlParser.title).to.be.eql('Title CSS Section');\n    });\n\n    it('expect be possible query for the description attribute', () => {\n      expect(htmlParser.description).to.be.eql('<p>Description HTML CSS Section</p>');\n    });\n  });\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe0",
+    "testId": 0,
+    "memberof": "test/parser/htmlParserSpec.js",
+    "testDepth": 0,
+    "longname": "test/parser/htmlParserSpec.js~describe0",
+    "access": null,
+    "description": "HtmlParser",
+    "lineNumber": 14
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it1",
+    "testId": 1,
+    "memberof": "test/parser/htmlParserSpec.js~describe0",
+    "testDepth": 1,
+    "longname": "test/parser/htmlParserSpec.js~describe0.it1",
+    "access": null,
+    "description": "Expect be an instanciable class",
+    "lineNumber": 15
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe2",
+    "testId": 2,
+    "memberof": "test/parser/htmlParserSpec.js~describe0",
+    "testDepth": 1,
+    "longname": "test/parser/htmlParserSpec.js~describe0.describe2",
+    "access": null,
+    "description": "An instance with a empty html param",
+    "lineNumber": 19
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it3",
+    "testId": 3,
+    "memberof": "test/parser/htmlParserSpec.js~describe0.describe2",
+    "testDepth": 2,
+    "longname": "test/parser/htmlParserSpec.js~describe0.describe2.it3",
+    "access": null,
+    "description": "expect throw an exception",
+    "lineNumber": 20
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe4",
+    "testId": 4,
+    "memberof": "test/parser/htmlParserSpec.js~describe0",
+    "testDepth": 1,
+    "longname": "test/parser/htmlParserSpec.js~describe0.describe4",
+    "access": null,
+    "description": "An instance with a valid HTML string",
+    "lineNumber": 25
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it5",
+    "testId": 5,
+    "memberof": "test/parser/htmlParserSpec.js~describe0.describe4",
+    "testDepth": 2,
+    "longname": "test/parser/htmlParserSpec.js~describe0.describe4.it5",
+    "access": null,
+    "description": "expect be possible query for the name attribute",
+    "lineNumber": 35
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it6",
+    "testId": 6,
+    "memberof": "test/parser/htmlParserSpec.js~describe0.describe4",
+    "testDepth": 2,
+    "longname": "test/parser/htmlParserSpec.js~describe0.describe4.it6",
+    "access": null,
+    "description": "expect be possible query for the title attribute",
+    "lineNumber": 39
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it7",
+    "testId": 7,
+    "memberof": "test/parser/htmlParserSpec.js~describe0.describe4",
+    "testDepth": 2,
+    "longname": "test/parser/htmlParserSpec.js~describe0.describe4.it7",
+    "access": null,
+    "description": "expect be possible query for the description attribute",
+    "lineNumber": 43
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/sections/sectionSpec.js",
+    "memberof": null,
+    "longname": "test/sections/sectionSpec.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "content": "/* eslint no-unused-vars:0 */\nimport sinon from 'sinon';\nimport {expect} from 'chai';\n\nimport {Section} from '../../src';\n\nimport {PATH_STATIC_SECTION, PATH_DINAMYC_SECTION} from '../constants';\n\ndescribe('Section', () => {\n  it('expect be an instanciable class', () => {\n    return expect(Section).to.not.be.undefined;\n  });\n\n  describe('.build', () => {\n    describe('Given an empty path', () => {\n      it('expect throw an error', () => {\n        expect(() => Section.build()).to.throw('[Section.build] path cant be a empty string');\n      });\n    });\n\n    describe('Given a path for a static page', () => {\n      let build, section;\n\n      beforeEach((done) => {\n        build = Section.build({path: PATH_STATIC_SECTION});\n        build.then(instance => {\n          section = instance;\n          done();\n        });\n      });\n\n      afterEach(() => {\n        build = null;\n        section = null;\n      });\n\n      it('expect return a promise with the an instance created', () => {\n        build.then(instance => {\n          expect(instance).to.be.an.instanceof(Section);\n        });\n      });\n\n      it('expect have a name in the section', () => {\n        expect(section.name).to.be.eql('Name CSS Section');\n      });\n\n      it('expect have a title in the section', () => {\n        expect(section.title).to.be.eql('Title CSS Section');\n      });\n\n      it('expect have a describe in the section', () => {\n        expect(section.description).to.be.eql('<p>Description HTML CSS Section</p>');\n      });\n\n      it('expect have a url attribute with the dirrection for the static page', () => {\n      });\n\n    });\n  });\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe8",
+    "testId": 8,
+    "memberof": "test/sections/sectionSpec.js",
+    "testDepth": 0,
+    "longname": "test/sections/sectionSpec.js~describe8",
+    "access": null,
+    "description": "Section",
+    "lineNumber": 9
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it9",
+    "testId": 9,
+    "memberof": "test/sections/sectionSpec.js~describe8",
+    "testDepth": 1,
+    "longname": "test/sections/sectionSpec.js~describe8.it9",
+    "access": null,
+    "description": "expect be an instanciable class",
+    "lineNumber": 10
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe10",
+    "testId": 10,
+    "memberof": "test/sections/sectionSpec.js~describe8",
+    "testDepth": 1,
+    "longname": "test/sections/sectionSpec.js~describe8.describe10",
+    "access": null,
+    "description": ".build",
+    "lineNumber": 14
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe11",
+    "testId": 11,
+    "memberof": "test/sections/sectionSpec.js~describe8.describe10",
+    "testDepth": 2,
+    "longname": "test/sections/sectionSpec.js~describe8.describe10.describe11",
+    "access": null,
+    "description": "Given an empty path",
+    "lineNumber": 15
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it12",
+    "testId": 12,
+    "memberof": "test/sections/sectionSpec.js~describe8.describe10.describe11",
+    "testDepth": 3,
+    "longname": "test/sections/sectionSpec.js~describe8.describe10.describe11.it12",
+    "access": null,
+    "description": "expect throw an error",
+    "lineNumber": 16
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe13",
+    "testId": 13,
+    "memberof": "test/sections/sectionSpec.js~describe8.describe10",
+    "testDepth": 2,
+    "longname": "test/sections/sectionSpec.js~describe8.describe10.describe13",
+    "access": null,
+    "description": "Given a path for a static page",
+    "lineNumber": 21
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it14",
+    "testId": 14,
+    "memberof": "test/sections/sectionSpec.js~describe8.describe10.describe13",
+    "testDepth": 3,
+    "longname": "test/sections/sectionSpec.js~describe8.describe10.describe13.it14",
+    "access": null,
+    "description": "expect return a promise with the an instance created",
+    "lineNumber": 37
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it15",
+    "testId": 15,
+    "memberof": "test/sections/sectionSpec.js~describe8.describe10.describe13",
+    "testDepth": 3,
+    "longname": "test/sections/sectionSpec.js~describe8.describe10.describe13.it15",
+    "access": null,
+    "description": "expect have a name in the section",
+    "lineNumber": 43
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it16",
+    "testId": 16,
+    "memberof": "test/sections/sectionSpec.js~describe8.describe10.describe13",
+    "testDepth": 3,
+    "longname": "test/sections/sectionSpec.js~describe8.describe10.describe13.it16",
+    "access": null,
+    "description": "expect have a title in the section",
+    "lineNumber": 47
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it17",
+    "testId": 17,
+    "memberof": "test/sections/sectionSpec.js~describe8.describe10.describe13",
+    "testDepth": 3,
+    "longname": "test/sections/sectionSpec.js~describe8.describe10.describe13.it17",
+    "access": null,
+    "description": "expect have a describe in the section",
+    "lineNumber": 51
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it18",
+    "testId": 18,
+    "memberof": "test/sections/sectionSpec.js~describe8.describe10.describe13",
+    "testDepth": 3,
+    "longname": "test/sections/sectionSpec.js~describe8.describe10.describe13.it18",
+    "access": null,
+    "description": "expect have a url attribute with the dirrection for the static page",
+    "lineNumber": 55
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/sections/sectionsFactorySpec.js",
+    "memberof": null,
+    "longname": "test/sections/sectionsFactorySpec.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "content": "/* eslint no-unused-vars:0 */\nimport sinon from 'sinon';\nimport {expect} from 'chai';\nimport {join} from 'path';\n\nimport {SectionsFactory, Section} from '../../src';\n\nimport {BASE_PATH} from '../constants';\n\ndescribe('SectionsFactory', () => {\n\n  it('Expect be an instanciable class', () => {\n    return expect(SectionsFactory).to.not.be.undefined;\n  });\n\n  describe('Given an empty path', () => {\n\n    it('expect throw an error', () => {\n      expect(() => new SectionsFactory()).to.throw('[SectionsFactory#constructor] path cant be a empty string');\n    });\n\n  });\n\n  describe( 'Given a path', () => {\n\n    let sectionsFactory;\n    beforeEach(() => {\n      sectionsFactory = new SectionsFactory({path: BASE_PATH});\n    });\n    afterEach(() => {\n      sectionsFactory = null;\n    });\n\n    it('expect return a list of Section Objects when call #sections method', (done) => {\n      sectionsFactory.sections().then((sections) => {\n        expect(sections).to.be.instanceof(Array);\n        expect(sections[0]).to.be.an.instanceof(Section);\n        done();\n      });\n    });\n\n  } );\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe19",
+    "testId": 19,
+    "memberof": "test/sections/sectionsFactorySpec.js",
+    "testDepth": 0,
+    "longname": "test/sections/sectionsFactorySpec.js~describe19",
+    "access": null,
+    "description": "SectionsFactory",
+    "lineNumber": 10
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it20",
+    "testId": 20,
+    "memberof": "test/sections/sectionsFactorySpec.js~describe19",
+    "testDepth": 1,
+    "longname": "test/sections/sectionsFactorySpec.js~describe19.it20",
+    "access": null,
+    "description": "Expect be an instanciable class",
+    "lineNumber": 12
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe21",
+    "testId": 21,
+    "memberof": "test/sections/sectionsFactorySpec.js~describe19",
+    "testDepth": 1,
+    "longname": "test/sections/sectionsFactorySpec.js~describe19.describe21",
+    "access": null,
+    "description": "Given an empty path",
+    "lineNumber": 16
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it22",
+    "testId": 22,
+    "memberof": "test/sections/sectionsFactorySpec.js~describe19.describe21",
+    "testDepth": 2,
+    "longname": "test/sections/sectionsFactorySpec.js~describe19.describe21.it22",
+    "access": null,
+    "description": "expect throw an error",
+    "lineNumber": 18
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe23",
+    "testId": 23,
+    "memberof": "test/sections/sectionsFactorySpec.js~describe19",
+    "testDepth": 1,
+    "longname": "test/sections/sectionsFactorySpec.js~describe19.describe23",
+    "access": null,
+    "description": "Given a path",
+    "lineNumber": 24
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it24",
+    "testId": 24,
+    "memberof": "test/sections/sectionsFactorySpec.js~describe19.describe23",
+    "testDepth": 2,
+    "longname": "test/sections/sectionsFactorySpec.js~describe19.describe23.it24",
+    "access": null,
+    "description": "expect return a list of Section Objects when call #sections method",
+    "lineNumber": 34
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/url/urlSpec.js",
+    "memberof": null,
+    "longname": "test/url/urlSpec.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "content": "/* eslint no-unused-vars:0 */\nimport sinon from 'sinon';\nimport {expect} from 'chai';\n\nimport url, {Url, NO_BASE_PATH, NO_HOST} from '../../src/url';\n\nimport {BASE_PATH, PATH_STATIC_SECTION, PATH_DINAMYC_SECTION, GITHUB_HOST_FIXTURE} from '../constants';\n\ndescribe('url', () => {\n  it('expect be an instance of Url', () => expect(url).to.be.an.instanceof(Url));\n\n  describe('Whitout setting the host and basePath', () => {\n    it('Expect throw an error when request for the absolute URL', () => {\n      expect(() => url.absolute({path: PATH_STATIC_SECTION})).to.throw('[Url#absolute] setup basePath and/or host');\n    });\n  });\n\n  describe('Setting host and basePath', () => {\n    beforeEach(() => {\n      url.basePath = BASE_PATH;\n      url.host = GITHUB_HOST_FIXTURE;\n    });\n\n    afterEach(() => {\n      url.basePath = NO_BASE_PATH;\n      url.host = NO_HOST;\n    });\n\n    xit('Expect have a absolute URL giving an Absolute Path to a section', () => {\n    });\n\n  });\n\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe25",
+    "testId": 25,
+    "memberof": "test/url/urlSpec.js",
+    "testDepth": 0,
+    "longname": "test/url/urlSpec.js~describe25",
+    "access": null,
+    "description": "url",
+    "lineNumber": 9
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it26",
+    "testId": 26,
+    "memberof": "test/url/urlSpec.js~describe25",
+    "testDepth": 1,
+    "longname": "test/url/urlSpec.js~describe25.it26",
+    "access": null,
+    "description": "expect be an instance of Url",
+    "lineNumber": 10
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe27",
+    "testId": 27,
+    "memberof": "test/url/urlSpec.js~describe25",
+    "testDepth": 1,
+    "longname": "test/url/urlSpec.js~describe25.describe27",
+    "access": null,
+    "description": "Whitout setting the host and basePath",
+    "lineNumber": 12
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it28",
+    "testId": 28,
+    "memberof": "test/url/urlSpec.js~describe25.describe27",
+    "testDepth": 2,
+    "longname": "test/url/urlSpec.js~describe25.describe27.it28",
+    "access": null,
+    "description": "Expect throw an error when request for the absolute URL",
+    "lineNumber": 13
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe29",
+    "testId": 29,
+    "memberof": "test/url/urlSpec.js~describe25",
+    "testDepth": 1,
+    "longname": "test/url/urlSpec.js~describe25.describe29",
+    "access": null,
+    "description": "Setting host and basePath",
+    "lineNumber": 18
+  }
+]

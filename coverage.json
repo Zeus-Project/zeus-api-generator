@@ -1,0 +1,27 @@
+{
+  "coverage": "0%",
+  "expectCount": 29,
+  "actualCount": 0,
+  "files": {
+    "src/parser/htmlParser.js": {
+      "expectCount": 6,
+      "actualCount": 0
+    },
+    "src/url/index.js": {
+      "expectCount": 8,
+      "actualCount": 0
+    },
+    "src/parser/parser.js": {
+      "expectCount": 4,
+      "actualCount": 0
+    },
+    "src/sections/section.js": {
+      "expectCount": 7,
+      "actualCount": 0
+    },
+    "src/sections/factory.js": {
+      "expectCount": 4,
+      "actualCount": 0
+    }
+  }
+}
