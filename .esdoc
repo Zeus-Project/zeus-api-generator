@@ -1,0 +1,10 @@
+{
+  "source": "./src",
+  "destination": "./docs",
+  "coverage": true,
+  "test": {
+    "type": "mocha",
+    "source": "./test",
+    "includes": ["Spec\\.js$"]
+  }
+}

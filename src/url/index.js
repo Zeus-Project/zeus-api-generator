@@ -21,6 +21,7 @@ export class Url {
     if(this._basePath === NO_BASE_PATH || this._host === NO_HOST) {
       throw new Error('[Url#absolute] setup basePath and/or host');
     }
+
   }
 }
 

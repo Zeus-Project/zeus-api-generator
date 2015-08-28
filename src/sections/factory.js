@@ -10,7 +10,7 @@ const getDirectories = (srcpath) => {
   return readdirSync(srcpath).filter(function(file) {
     return statSync(join(srcpath, file)).isDirectory();
   });
-}
+};
 
 export default class SectionsFactory {
   constructor({path = NO_PATH} = {}) {
@@ -21,7 +21,7 @@ export default class SectionsFactory {
   }
 
   sections() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const sectionsBuilders = getDirectories(this.path)
                   .map(dir => `${this.path}${sep}${dir}`)
                   .map(path => Section.build({path}));

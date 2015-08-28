@@ -5,20 +5,23 @@
   "main": "index.js",
   "scripts": {
     "prepublish": "rimraf ./lib && npm run dist",
+
     "dist": "npm run dist:js",
     "dist:js": "babel src --out-dir lib",
-    "predev": "rimraf docs/bundle.js && touch docs/bundle.js",
-    "dev": "npm run dev:js:watch & npm run dev:server",
-    "dev:js:watch": "watchify -t babelify -t sassify docs/index.js -o docs/bundle.js",
-    "dev:server": "serve ./docs -p 8080",
+
+    "dev": "npm run dev:js:watch",
+    "dev:js:watch": "npm run dist:js -- --watch",
+
     "test": "mocha --compilers js:babel/register --recursive",
     "test:watch": "npm run test -- --watch",
+
     "lint": "npm run lint:jscs && npm run lint:eslint",
     "lint:jscs": "cat ./{src,test}/**/*.js | jscs",
     "lint:eslint": "eslint --ext=\".js\" src/",
-    "predoc": "browserify -t babelify docs/index.js -o docs/bundle.js",
-    "doc": "npm run doc:build",
-    "doc:build": "gh-pages -d docs"
+
+    "predoc": "esdoc -c .esdoc && echo '*\n!.gitignore' > docs/.gitignore",
+    "doc": "gh-pages -d docs",
+    "doc:open": "open ./docs/index.html"
   },
   "repository": {
     "type": "git",
@@ -46,6 +49,7 @@
     "babelify": "^6.1.3",
     "browserify": "^11.0.0",
     "chai": "^2.3.0",
+    "esdoc": "^0.1.3",
     "eslint": "^0.24.1",
     "eslint-plugin-react": "^2.7.0",
     "gh-pages": "^0.3.1",

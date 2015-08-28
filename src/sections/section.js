@@ -14,7 +14,7 @@ export default class Section {
       throw new Error('[Section.build] path cant be a empty string');
     }
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       readFilePromisify(join(path, DATA_FILE), {encoding: 'utf8'})
       .then(html => new HtmlParser({html}))
       .then(parser => resolve(new Section({parser})));
